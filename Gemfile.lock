@@ -194,6 +194,7 @@ GEM
     bullet_train-themes-tailwind_css (1.0.8)
       bullet_train-themes
       rails (>= 7.0.0)
+    byebug (11.1.3)
     cable_ready (5.0.0.pre9)
       actioncable (>= 5.2)
       actionpack (>= 5.2)
@@ -619,6 +620,7 @@ DEPENDENCIES
   bullet_train-sortable
   bullet_train-super_scaffolding
   bullet_train-themes-light
+  byebug
   capybara
   capybara-email
   cssbundling-rails
