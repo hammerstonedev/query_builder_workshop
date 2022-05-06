@@ -3,6 +3,7 @@
     <%= render 'account/teams/menu_item' %>
     <%= render 'account/scaffolding/absolutely_abstract/creative_concepts/menu_item' unless scaffolding_things_disabled? %>
     <% # added by super scaffolding. %>
+    <%= render 'account/contacts/menu_item' %>
   <% end %>
 
   <%= render 'account/shared/menu/section', title: t('menus.main.labels.integrations') do %>
