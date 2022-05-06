@@ -5,6 +5,7 @@ import { controllerDefinitions as bulletTrainFieldControllers } from "@bullet-tr
 import RevealController from 'stimulus-reveal'
 import CableReady from 'cable_ready'
 import consumer from '../channels/consumer'
+import { controllerDefinitions as refineControllers } from "@hammerstone/refine-stimulus"
 
 const application = Application.start()
 
@@ -14,6 +15,7 @@ import { context as controllersContext } from './**/*_controller.js';
 
 application.load(bulletTrainControllers)
 application.load(bulletTrainFieldControllers)
+application.load(refineControllers)
 
 application.register('reveal', RevealController)
 

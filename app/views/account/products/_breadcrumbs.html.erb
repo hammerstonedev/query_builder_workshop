@@ -1,0 +1,8 @@
+<% product ||= @product %>
+<% contact ||= @contact || product&.contact %>
+<%= render 'account/contacts/breadcrumbs', contact: contact %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, contact, :products] %>
+<% if product&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: product.label_string, url: [:account, product] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'products' %>

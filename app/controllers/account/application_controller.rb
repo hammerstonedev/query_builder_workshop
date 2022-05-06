@@ -13,4 +13,5 @@ class Account::ApplicationController < ApplicationController
     # Finally, if we've gotten this far, then onboarding appears to be complete!
     true
   end
+
 end
