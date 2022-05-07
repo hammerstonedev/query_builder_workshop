@@ -71,8 +71,11 @@ class Account::ContactsController < Account::ApplicationController
         # e.g. `Scaffolding::CompletelyConcrete::TangibleThingsFilter`
         filter_class.constantize.new([])
       end
+      # This will take the @refine_filter object, call get_query, and set the results to @contact
+      # instance_variable_set(:@contacts, @refine_filter.get_query)
     end
   end
+
 
   def filter_params
     params.permit(:filter, :stable_id, :blueprint, :conditions, :clauses, :name)

@@ -7,6 +7,15 @@ class Filter
 
 	def get_query
     # Let's build it! 
+    # Example blueprint if first_name = colleen 
+    # [{:depth=>1, :type=>"criterion", :condition_id=>"first_name", :input=>{:clause=>"eq", :value=>"colleen"}}]
+    # byebug
+    # puts table
+    #<Arel::Table:0x0000000117b65f90 @name="contacts", @klass=Contact(id: integer, team_id: integer, email: string, first_name: string, last_name: string, created_at: datetime, updated_at: datetime), @type_caster=#<ActiveRecord::TypeCaster::Map:0x0000000117b65f40 @klass=Contact(id: integer, team_id: integer, email: string, first_name: string, last_name: string, created_at: datetime, updated_at: datetime)>, @table_alias=nil>
+    # (byebug) table.class
+    # Arel::Table
+    # puts blueprint
+    # Contact.all
 	end
 
   def configuration

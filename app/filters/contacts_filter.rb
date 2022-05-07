@@ -9,7 +9,8 @@ class ContactsFilter < Filter
   end
 
   def table
-    Contact.arel_table
+    # This is how you define the AREL table so you can build up nodes
+    # Contact.arel_table
   end
 
   def conditions
