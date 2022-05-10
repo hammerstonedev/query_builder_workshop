@@ -72,7 +72,7 @@ class Account::ContactsController < Account::ApplicationController
         filter_class.constantize.new([])
       end
       # This will take the @refine_filter object, call get_query, and set the results to @contact
-      # instance_variable_set(:@contacts, @refine_filter.get_query)
+      instance_variable_set(:@contacts, @refine_filter.get_query)
     end
   end
 

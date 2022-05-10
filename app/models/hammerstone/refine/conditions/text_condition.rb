@@ -1,27 +1,5 @@
 module Hammerstone::Refine::Conditions
-  class TextCondition 
-    attr_accessor :id
-
-    def initialize(id)
-      @id = id
-      # Optimistically set attribute to the id
-      @attribute = id
-    end
-
-    def set_filter(filter)
-      @filter = filter
-      self
-    end
-
-    def to_array
-      {
-        id: id,
-        component: self.component,
-        display: self.id,
-        meta: {clauses: clauses.map(&:to_array)},
-        refinements: []
-      }
-    end
+  class TextCondition < Condition
 
     def component
       "text-condition"
@@ -33,5 +11,27 @@ module Hammerstone::Refine::Conditions
         Clause.new("dne", "Doesn't Equal")
       ]
     end
+
+    def apply_condition(input)
+      value = input[:value]
+      table = filter.table
+      clause = input[:clause]
+
+      case clause
+      when "eq"
+        apply_clause_equals(value, table)
+      when "dne"
+        apply_clause_doesnt_equal(value, table)
+      end
+    end
+
+    def apply_clause_equals(value, table)
+      table[attribute].eq(value)
+    end
+
+    def apply_clause_doesnt_equal(value, table)
+      table[attribute].not_eq(value).or(table[attribute].eq(nil))
+    end
+
   end
 end
