@@ -18,6 +18,7 @@ class ContactsFilter < Filter
       Hammerstone::Refine::Conditions::TextCondition.new("first_name"),
       Hammerstone::Refine::Conditions::TextCondition.new("last_name"),
       Hammerstone::Refine::Conditions::TextCondition.new("email"),
+      #Hammerstone::Refine::Conditions::NumericCondition.new("pets"),
     ]
   end
 end
