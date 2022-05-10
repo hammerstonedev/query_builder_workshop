@@ -91,6 +91,7 @@ class Account::ContactsController < Account::ApplicationController
       :email,
       :first_name,
       :last_name,
+      :pets,
       # 🚅 super scaffolding will insert new fields above this line.
       # 🚅 super scaffolding will insert new arrays above this line.
     )

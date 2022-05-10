@@ -21,6 +21,7 @@ class Api::V1::ContactsEndpointTest < Api::Test
       assert_equal contact_data['email'], contact.email
       assert_equal contact_data['first_name'], contact.first_name
       assert_equal contact_data['last_name'], contact.last_name
+      assert_equal contact_data['pets'], contact.pets
       # 🚅 super scaffolding will insert new fields above this line.
 
       assert_equal contact_data["team_id"], contact.team_id
@@ -82,6 +83,7 @@ class Api::V1::ContactsEndpointTest < Api::Test
         email: 'Alternative String Value',
         first_name: 'Alternative String Value',
         last_name: 'Alternative String Value',
+        pets: 'Alternative String Value',
         # 🚅 super scaffolding will also insert new fields above this line.
       }
 
@@ -95,6 +97,7 @@ class Api::V1::ContactsEndpointTest < Api::Test
       assert_equal @contact.email, 'Alternative String Value'
       assert_equal @contact.first_name, 'Alternative String Value'
       assert_equal @contact.last_name, 'Alternative String Value'
+      assert_equal @contact.pets, 'Alternative String Value'
       # 🚅 super scaffolding will additionally insert new fields above this line.
 
       # Also ensure we can't do that same action as another user.

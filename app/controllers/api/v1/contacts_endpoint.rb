@@ -12,6 +12,7 @@ class Api::V1::ContactsEndpoint < Api::V1::Root
       optional :email, type: String, desc: Api.heading(:email)
       optional :first_name, type: String, desc: Api.heading(:first_name)
       optional :last_name, type: String, desc: Api.heading(:last_name)
+      optional :pets, type: String, desc: Api.heading(:pets)
       # 🚅 super scaffolding will insert new fields above this line.
       # 🚅 super scaffolding will insert new arrays above this line.
 

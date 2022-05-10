@@ -37,7 +37,8 @@ team = user.current_team
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
-    team_id: team.id
+    team_id: team.id,
+    pets: Faker::Number.number(digits: 2)
   )
   contact.save!
 end
