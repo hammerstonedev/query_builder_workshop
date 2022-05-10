@@ -1,6 +1,12 @@
 # Query Builder Workshop
+# Branch 02
 
 ## Steps: 
-1. Uncomment ln:13 in `contacts_filter.rb` to use Arel
-2. In `contacts_controller.rb` uncomment ln:75
-3. Uncomment ln:13, 17, 18 in `filter.rb` to see the Arel table and the blueprint 
+1. Uncomment ln:75 in `contacts_controller.rb` to set @contacts with the returned results
+2. Review `filter.rb` to see the new methods 
+	- `get_query`
+	- `make_subquery`
+	- `add_nodes_to_subquery`
+	- `apply_condition`
+	- `get_condition_for_criterion`
+

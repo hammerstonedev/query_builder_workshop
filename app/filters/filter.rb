@@ -7,16 +7,53 @@ class Filter
 
 	def get_query
     # Let's build it! 
-    # Example blueprint if first_name = colleen 
-    # [{:depth=>1, :type=>"criterion", :condition_id=>"first_name", :input=>{:clause=>"eq", :value=>"colleen"}}]
-    # byebug
-    # puts table
-    #<Arel::Table:0x0000000117b65f90 @name="contacts", @klass=Contact(id: integer, team_id: integer, email: string, first_name: string, last_name: string, created_at: datetime, updated_at: datetime), @type_caster=#<ActiveRecord::TypeCaster::Map:0x0000000117b65f40 @klass=Contact(id: integer, team_id: integer, email: string, first_name: string, last_name: string, created_at: datetime, updated_at: datetime)>, @table_alias=nil>
-    # (byebug) table.class
-    # Arel::Table
-    # puts blueprint
-    # Contact.all
+    if blueprint.present?
+      initial_query.where(make_subquery)
+    else
+      initial_query
+    end
 	end
+
+  def make_subquery
+    subquery = nil
+    blueprint.each_with_index do |criterion, index|
+      next if criterion[:type] == "conjunction"
+      query_method = if index == 0
+        "and"
+      else
+        blueprint[index - 1][:word] == "and" ? "and" : "or"
+      end
+      byebug
+      arel_nodes = apply_condition(criterion)
+      subquery = add_nodes_to_subquery(nodes: arel_nodes, query_method: query_method, subquery: subquery)
+    end
+    subquery
+  end
+
+  def add_nodes_to_subquery(nodes:, query_method:, subquery:)
+    # If subquery does not have a value, it is equal to the first node 
+    if subquery.blank?
+      nodes 
+    else
+      # If it exists, add the new node to the chain
+      subquery.send(query_method, nodes)
+    end
+  end
+
+  def apply_condition(criterion)
+    get_condition_for_criterion(criterion)&.apply(criterion[:input])
+  end
+
+  def get_condition_for_criterion(criterion)
+    # Returns the object that matches the condition. The conditions are defined on the filter object, 
+    # in this case ContactFilter.rb
+    # This checks the id on the condition such as first_name
+    selected_condition = conditions.find { |condition| condition.id == criterion[:condition_id] }
+
+    # Set filter variable on condition
+    selected_condition.set_filter(self)
+  end
+
 
   def configuration
     # Provided to the front end
