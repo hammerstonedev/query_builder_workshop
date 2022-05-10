@@ -7,13 +7,13 @@ module Hammerstone::Refine::Conditions
 
     def clauses 
       [
-        Clause.new("lt", "Doesn't Equal"),
-        Clause.new("gt", "Doesn't Equal")
+        Clause.new("lt", "Less Than"),
+        Clause.new("gt", "Greater Than")
       ]
     end
 
     def apply_condition(input)
-      value = input[:value1]
+      value = input[:value]
       table = filter.table
       clause = input[:clause]
 
