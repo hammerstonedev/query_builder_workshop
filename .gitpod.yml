@@ -9,7 +9,7 @@ tasks:
       gp sync-done 
   - init: gp sync-await 
     command: |
-      yarn install && yarn run build && bin/setup
+      bin/dev
       rails server
 
 ports:
