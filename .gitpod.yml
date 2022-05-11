@@ -4,12 +4,11 @@
 image: 
   file: gitpod.Dockerfile
 tasks:
-  - init: |
-      redis-server
-      gp sync-done 
-  - init: gp sync-await 
+  - init: >
+      redis-server && gp sync-done redis_start
+  - init: gp sync-await redis_start
     command: |
-      bin/dev
+      yarn install && yarn run build && bin/setup
       rails server
 
 ports:
