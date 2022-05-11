@@ -4,10 +4,14 @@
 image: 
   file: gitpod.Dockerfile
 tasks:
-  - init: yarn install && yarn run build && bin/setup
-    command: rails server
-  - name: Redis
-    command: redis-server
+  - init: |
+      redis-server
+      gp sync-done redis_start
+  - init: gp sync-await redis_start
+    command: |
+      yarn install && yarn run build && bin/setup
+      rails server
+
 ports:
   # Rails server
   - port: 3000
