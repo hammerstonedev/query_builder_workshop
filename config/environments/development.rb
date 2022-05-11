@@ -85,6 +85,8 @@ Rails.application.configure do
 
   # allow users to access this application via the configured application domain.
   config.hosts << default_url_options_from_base_url[:host]
+  # Special host for gitpod
+  config.hosts << "3000-hammerstone-querybuilde-j61atrm8glq.ws-us44.gitpod.io"
 
   config.action_mailer.delivery_method = :letter_opener
   config.active_job.queue_adapter = :sidekiq
