@@ -6,7 +6,7 @@ image:
 tasks:
   - init: >
       redis-server 
-  - init: 
+  - init: >
     command: |
       bin/dev
 
