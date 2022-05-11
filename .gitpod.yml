@@ -6,8 +6,8 @@ image:
 tasks:
   - init: |
       redis-server
-      gp sync-done redis_start
-  - init: gp sync-await redis_start
+      gp sync-done 
+  - init: gp sync-await 
     command: |
       yarn install && yarn run build && bin/setup
       rails server
