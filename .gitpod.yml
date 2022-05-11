@@ -5,8 +5,8 @@ image:
   file: gitpod.Dockerfile
 tasks:
   - init: >
-      redis-server && gp sync-done initialized
-  - init: gp sync-await initialized
+      redis-server 
+  - init: 
     command: |
       bin/dev
 
