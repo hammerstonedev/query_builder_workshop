@@ -5,10 +5,9 @@ image:
   file: gitpod.Dockerfile
 tasks:
   - init: >
-      redis-server 
-  - init: >
-    command: |
-      bin/dev
+      redis-server && gp sync-done redis_start
+  - init: gp sync-await redis_start
+    command: bin/dev
 
 ports:
   # Rails server
