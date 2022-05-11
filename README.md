@@ -3,7 +3,7 @@
 2. Kill the terminal that automatically opens (Ctrl+C)
 3. Run `rake db:setup` in the terminal
 4. Run `bin/dev` in the gitpod terminal. 
-5. 
+
 # Query Builder Workshop
 
 ## Getting Started
