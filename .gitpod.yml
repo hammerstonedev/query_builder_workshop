@@ -4,8 +4,13 @@
 image: 
   file: gitpod.Dockerfile
 tasks:
+  - name: Redis
+    init: gp sync-done redis-started
+    command: redis-server
+
   - name: Rails
     init: >
+      gp sync-await redis-started
       bundle install &&
       yarn install --check-files &&
       rails db:setup &&
@@ -15,10 +20,6 @@ tasks:
   - name: Webpack
     init: gp sync-await bundle # wait for the above 'init' to finish
     command: bin/webpack-dev-server
-
-  - name: Redis
-    init: gp sync-await bundle
-    command: redis-server
 
   - name: Sidekiq
     init: gp sync-await bundle
