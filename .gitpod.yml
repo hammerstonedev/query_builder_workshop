@@ -6,6 +6,8 @@ image:
 tasks:
   - init: yarn install && yarn run build && bin/setup
     command: rails server
+  - name: Redis
+    command: redis-server
 ports:
   # Rails server
   - port: 3000
@@ -13,3 +15,4 @@ ports:
   # PostgreSQL server
   - port: 5432
     onOpen: ignore
+
