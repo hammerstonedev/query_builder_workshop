@@ -9,25 +9,12 @@ tasks:
     command: redis-server
 
   - name: Rails
-    init: >
+    init: |
       gp sync-await redis-started
-      bundle install &&
-      yarn install --check-files &&
+      bin/setup &&
       rails db:setup &&
       gp sync-done bundle # 'bundle' is an arbitrary name
-    command: bin/rails server -p 3000
-
-  - name: Webpack
-    init: gp sync-await bundle # wait for the above 'init' to finish
-    command: bin/webpack-dev-server
-
-  - name: Sidekiq
-    init: gp sync-await bundle
-    command: sidekiq
-
-  - name: light-css
-    init: gp sync-await bundle 
-    command: bundle exec rake bt:link && yarn light:build:css --watch
+    command: bin/dev
 
 ports:
   # Rails server
