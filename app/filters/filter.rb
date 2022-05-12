@@ -23,7 +23,6 @@ class Filter
       else
         blueprint[index - 1][:word] == "and" ? "and" : "or"
       end
-      byebug
       arel_nodes = apply_condition(criterion)
       subquery = add_nodes_to_subquery(nodes: arel_nodes, query_method: query_method, subquery: subquery)
     end
