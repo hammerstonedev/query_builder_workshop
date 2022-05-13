@@ -15,8 +15,25 @@ class Filter
     # (byebug) table.class
     # Arel::Table
     # puts blueprint
-    # Contact.all
+    initial_query.where(make_subquery)
 	end
+
+  def make_subquery
+    subquery = nil 
+    blueprint.each do |criterion|
+      column = criterion[:condition_id]
+      next if criterion[:type] == "conjunction"
+      case criterion[:input][:clause]
+      when "eq"
+        node = table[column].eq(criterion[:input][:value])
+      when "dne"
+        node = table[column].eq(criterion[:input][:value])
+      end
+      subquery = subquery&.and(node) || node
+    end
+    subquery
+  end
+
 
   def configuration
     # Provided to the front end
