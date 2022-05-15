@@ -7,8 +7,8 @@ module Hammerstone::Refine::Conditions
 
     def clauses 
       [
-        Clause.new("lt", "Doesn't Equal"),
-        Clause.new("gt", "Doesn't Equal")
+        Clause.new("lt", "Less Than"),
+        Clause.new("gt", "Greater Than")
       ]
     end
 
@@ -17,20 +17,10 @@ module Hammerstone::Refine::Conditions
       table = filter.table
       clause = input[:clause]
 
-      case clause
-      when "lt"
-        apply_clause_less_than(value, table)
-      when "gt"
-        apply_clause_greater_than(value, table)
-      end
-    end
-
-    def apply_clause_less_than(value, table)
-      table[attribute].lt(value)
-    end
-
-    def apply_clause_greater_than(value, table)
-      table[attribute].gt(value)
+      # build out the Arel nodes for a  numeric condition less 
+      # than, greater than
+      # Hint 1: Arel::Predications.instance_methods
+      # Hint 2: Look at text_condition.rb for the arel syntax
     end
   end
 end
